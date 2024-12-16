@@ -33,7 +33,7 @@ app.use(express.static('public'))
 
 app.get("/nft/data", (req, res) => res.json({
    "description": "First Harvest Achievement NFT",
-   "image": "https://shape-town-api.vercel.app/AchievementNFT.png",
+   "image": "https://raw.githubusercontent.com/mnkhod/shape-town-api/refs/heads/main/api/public/AchievementNFT.png",
    "name": "First Harvest Achievement",
 }));
 
