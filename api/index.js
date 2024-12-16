@@ -29,9 +29,11 @@ const { ethers } = require("ethers")
 
 const app = express();
 
+app.use(express.static('public'))
+
 app.get("/nft/data", (req, res) => res.json({
-   "description": "",
-   "image": "https://arweave.net/gjAzfpcJcHqviSnYuUI5ElEQT9b934ShxrUQ-WVolZ0/1517.png",
+   "description": "First Harvest Achievement NFT",
+   "image": "https://shape-town-api.vercel.app/AchievementNFT.png",
    "name": "First Harvest Achievement",
 }));
 
