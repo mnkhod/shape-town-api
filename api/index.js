@@ -23,7 +23,6 @@ const abi = [
 ]
 
 
-const NFTAbi = require("./nftAbi.js");
 const express = require("express");
 const { ethers } = require("ethers")
 
@@ -43,18 +42,32 @@ app.get("/env-test", (req, res) => res.send(process.env.TEST));
 app.get("/test/nft/create/:address", async (req, res) => {
   let address = req.params.address
 
-  if(!address) throw Error("Address Empty")
+  if(!address){
+    res.json({
+      code: 501,
+      error: "Address is wrong"
+    })
+  }
 
   let provider = new ethers.JsonRpcProvider("https://sepolia.shape.network/")
   let wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
   let signer = wallet.connect(provider);
 
-  let nft = new ethers.Contract("0x3A711d5E7e4d69eBef1B7e1b3715f463619A254c",abi, signer)
+  let nft = new ethers.Contract("0x41C9509461908fD608CFfE07D6a1b99CF744649c",abi, signer)
 
-  let receipt = await nft.safeMint(address)
-  let result = await receipt.wait()
+  try{
+    let receipt = await nft.safeMint(address)
+    let result = await receipt.wait()
 
-  res.send(result.hash)
+    res.json({
+      hash: result.hash
+    })
+  }catch(e){
+    res.json({
+      code: 502,
+      error: "Contract Error"
+    })
+  }
 });
 
 app.listen(3000, () => console.log("Server ready on port 3000."));
