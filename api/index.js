@@ -72,6 +72,37 @@ app.get("/test/nft/create/:address", async (req, res) => {
   }
 });
 
+app.get("/main/nft/create/:address", async (req, res) => {
+  let address = req.params.address
+
+  if(!address){
+    res.json({
+      code: 501,
+      error: "Address is wrong"
+    })
+  }
+
+  let provider = new ethers.JsonRpcProvider("https://mainnet.shape.network/")
+  let wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
+  let signer = wallet.connect(provider);
+
+  let nft = new ethers.Contract("0x3A711d5E7e4d69eBef1B7e1b3715f463619A254c",abi, signer)
+
+  try{
+    let receipt = await nft.safeMint(address)
+    let result = await receipt.wait()
+
+    res.json({
+      hash: result.hash
+    })
+  }catch(e){
+    res.json({
+      code: 502,
+      error: "Contract Error"
+    })
+  }
+});
+
 app.listen(3000, () => console.log("Server ready on port 3000."));
 
 module.exports = app;
