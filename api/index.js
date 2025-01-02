@@ -26,17 +26,22 @@ const abi = [
 const express = require("express");
 const { ethers } = require("ethers")
 const cors = require('cors')
+const { nftCollection } = require('./data.js');
 
 const app = express();
 app.use(cors())
 
 app.use(express.static('public'))
 
-app.get("/nft/data", (req, res) => res.json({
-   "description": "First Harvest Achievement NFT",
-   "image": "https://raw.githubusercontent.com/mnkhod/shape-town-api/refs/heads/main/api/public/AchievementNFT.png",
-   "name": "First Harvest Achievement",
-}));
+app.get("/nft/data/:id", (req, res) => {
+  const collectionId = req.params.id
+
+  if(collectionId < nftCollection.length){
+    return res.json(nftCollection[collectionId])
+  }
+
+  return res.json(nftCollection[0])
+});
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 app.get("/env-test", (req, res) => res.send(process.env.TEST));
