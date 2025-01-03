@@ -1,32 +1,15 @@
 require('dotenv').config()
 
-
-const abi = [
-  "function approve(address,uint256)",
-  "function balanceOf(address) view returns (uint256)",
-  "function burn(uint256)",
-  "function getApproved(uint256) view returns (address)",
-  "function isApprovedForAll(address,address) view returns (bool)",
-  "function name() view returns (string)",
-  "function owner() view returns (address)",
-  "function ownerOf(uint256) view returns (address)",
-  "function renounceOwnership()",
-  "function safeMint(address)",
-  "function safeTransferFrom(address,address,uint256)",
-  "function safeTransferFrom(address,address,uint256,bytes)",
-  "function setApprovalForAll(address,bool)",
-  "function supportsInterface(bytes4) view returns (bool)",
-  "function symbol() view returns (string)",
-  "function tokenURI(uint256) view returns (string)",
-  "function transferFrom(address,address,uint256)",
-  "function transferOwnership(address)"
-]
-
-
 const express = require("express");
 const { ethers } = require("ethers")
 const cors = require('cors')
-const { nftCollection } = require('./data.js');
+
+const { shapeNftAbi } = require('./constants.js');
+const { 
+  createNeverForgetWaterAchievement,
+  createFirstHarvestAchievement,
+  createGiftFromNatureAchievement
+} = require('./eduEndpoints.js');
 
 const app = express();
 app.use(cors())
@@ -60,7 +43,7 @@ app.get("/test/nft/create/:address", async (req, res) => {
   let wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
   let signer = wallet.connect(provider);
 
-  let nft = new ethers.Contract("0x41C9509461908fD608CFfE07D6a1b99CF744649c",abi, signer)
+  let nft = new ethers.Contract("0x41C9509461908fD608CFfE07D6a1b99CF744649c",shapeNftAbi, signer)
 
   try{
     let receipt = await nft.safeMint(address)
@@ -91,7 +74,7 @@ app.get("/main/nft/create/:address", async (req, res) => {
   let wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
   let signer = wallet.connect(provider);
 
-  let nft = new ethers.Contract("0x3A711d5E7e4d69eBef1B7e1b3715f463619A254c",abi, signer)
+  let nft = new ethers.Contract("0x3A711d5E7e4d69eBef1B7e1b3715f463619A254c",shapeNftAbi, signer)
 
   try{
     let receipt = await nft.safeMint(address)
@@ -106,6 +89,45 @@ app.get("/main/nft/create/:address", async (req, res) => {
       error: "Contract Error"
     })
   }
+});
+
+app.get("/edu/nft/create/0/:address", async (req, res) => {
+  let address = req.params.address
+
+  if(!address){
+    res.json({
+      code: 501,
+      error: "Address is wrong"
+    })
+  }
+
+  await createNeverForgetWaterAchievement(address,res)
+});
+
+app.get("/edu/nft/create/1/:address", async (req, res) => {
+  let address = req.params.address
+
+  if(!address){
+    res.json({
+      code: 501,
+      error: "Address is wrong"
+    })
+  }
+
+  await createFirstHarvestAchievement(address,res)
+});
+
+app.get("/edu/nft/create/2/:address", async (req, res) => {
+  let address = req.params.address
+
+  if(!address){
+    res.json({
+      code: 501,
+      error: "Address is wrong"
+    })
+  }
+
+  await createGiftFromNatureAchievement(address,res)
 });
 
 app.listen(3000, () => console.log("Server ready on port 3000."));

@@ -1,0 +1,91 @@
+let baseEndPoint = "https://raw.githubusercontent.com/mnkhod/shape-town-api/refs/heads/main/api/public"
+
+module.exports.nftCollection = [
+    {
+        "description": "Learning to harvest",
+        "image": `${baseEndPoint}/${"FirstHarvestAchievement"}.png`,
+        "name": "First Harvest",
+        "symbol" : "First Harvest",
+    },
+    {
+        "description": "Cut down all the dead trees",
+        "image": `${baseEndPoint}/${"GiftFromNatureAchievement"}.png`,
+        "name": "Gift from Nature",
+    },
+    {
+        "description": "",
+        "image": `${baseEndPoint}/${"FirstFishAchievement"}.png`,
+        "name": "First Fish",
+    },
+    {
+        "description": "",
+        "image": `${baseEndPoint}/${"NaturalForagerAchievement"}.png`,
+        "name": "Natural Forager",
+    },
+    {
+        "description": "",
+        "image": `${baseEndPoint}/${"TasteOfGoldAchievement"}.png`,
+        "name": "Taste of Gold",
+    },
+];
+
+module.exports.achievementNftAbi = [
+    "error AccessControlBadConfirmation()",
+    "error AccessControlUnauthorizedAccount(address,bytes32)",
+    "error ERC1155InsufficientBalance(address,uint256,uint256,uint256)",
+    "error ERC1155InvalidApprover(address)",
+    "error ERC1155InvalidArrayLength(uint256,uint256)",
+    "error ERC1155InvalidOperator(address)",
+    "error ERC1155InvalidReceiver(address)",
+    "error ERC1155InvalidSender(address)",
+    "error ERC1155MissingApprovalForAll(address,address)",
+    "event ApprovalForAll(address indexed,address indexed,bool)",
+    "event RoleAdminChanged(bytes32 indexed,bytes32 indexed,bytes32 indexed)",
+    "event RoleGranted(bytes32 indexed,address indexed,address indexed)",
+    "event RoleRevoked(bytes32 indexed,address indexed,address indexed)",
+    "event TransferBatch(address indexed,address indexed,address indexed,uint256[],uint256[])",
+    "event TransferSingle(address indexed,address indexed,address indexed,uint256,uint256)",
+    "event URI(string,uint256 indexed)",
+    "function DEFAULT_ADMIN_ROLE() view returns (bytes32)",
+    "function MINTER_ROLE() view returns (bytes32)",
+    "function URI_SETTER_ROLE() view returns (bytes32)",
+    "function balanceOf(address,uint256) view returns (uint256)",
+    "function balanceOfBatch(address[],uint256[]) view returns (uint256[])",
+    "function burn(address,uint256,uint256)",
+    "function burnBatch(address,uint256[],uint256[])",
+    "function getRoleAdmin(bytes32) view returns (bytes32)",
+    "function grantRole(bytes32,address)",
+    "function hasRole(bytes32,address) view returns (bool)",
+    "function isApprovedForAll(address,address) view returns (bool)",
+    "function mint(address,uint256,uint256,bytes)",
+    "function mintBatch(address,uint256[],uint256[],bytes)",
+    "function renounceRole(bytes32,address)",
+    "function revokeRole(bytes32,address)",
+    "function safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)",
+    "function safeTransferFrom(address,address,uint256,uint256,bytes)",
+    "function setApprovalForAll(address,bool)",
+    "function setURI(string)",
+    "function supportsInterface(bytes4) view returns (bool)",
+    "function uri(uint256) view returns (string)"
+]
+
+module.exports.shapeNftAbi = [
+  "function approve(address,uint256)",
+  "function balanceOf(address) view returns (uint256)",
+  "function burn(uint256)",
+  "function getApproved(uint256) view returns (address)",
+  "function isApprovedForAll(address,address) view returns (bool)",
+  "function name() view returns (string)",
+  "function owner() view returns (address)",
+  "function ownerOf(uint256) view returns (address)",
+  "function renounceOwnership()",
+  "function safeMint(address)",
+  "function safeTransferFrom(address,address,uint256)",
+  "function safeTransferFrom(address,address,uint256,bytes)",
+  "function setApprovalForAll(address,bool)",
+  "function supportsInterface(bytes4) view returns (bool)",
+  "function symbol() view returns (string)",
+  "function tokenURI(uint256) view returns (string)",
+  "function transferFrom(address,address,uint256)",
+  "function transferOwnership(address)"
+]
