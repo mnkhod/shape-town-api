@@ -4,7 +4,7 @@ const express = require("express");
 const { ethers } = require("ethers")
 const cors = require('cors')
 
-const { shapeNftAbi } = require('./constants.js');
+const { shapeNftAbi,nftCollection } = require('./constants.js');
 const { 
   createNeverForgetWaterAchievement,
   createFirstHarvestAchievement,
