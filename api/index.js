@@ -11,6 +11,12 @@ const {
   createGiftFromNatureAchievement
 } = require('./eduEndpoints.js');
 
+const { 
+  createShapeFirstHarvestAchievement,
+  createShapeGiftFromNatureAchievement,
+  createShapeNeverForgetWaterAchievement
+} = require('./shapeEndpoints.js');
+
 const app = express();
 app.use(cors())
 
@@ -44,37 +50,6 @@ app.get("/test/nft/create/:address", async (req, res) => {
   let signer = wallet.connect(provider);
 
   let nft = new ethers.Contract("0x41C9509461908fD608CFfE07D6a1b99CF744649c",shapeNftAbi, signer)
-
-  try{
-    let receipt = await nft.safeMint(address)
-    let result = await receipt.wait()
-
-    res.json({
-      hash: result.hash
-    })
-  }catch(e){
-    res.json({
-      code: 502,
-      error: "Contract Error"
-    })
-  }
-});
-
-app.get("/main/nft/create/:address", async (req, res) => {
-  let address = req.params.address
-
-  if(!address){
-    res.json({
-      code: 501,
-      error: "Address is wrong"
-    })
-  }
-
-  let provider = new ethers.JsonRpcProvider("https://mainnet.shape.network/")
-  let wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
-  let signer = wallet.connect(provider);
-
-  let nft = new ethers.Contract("0x3A711d5E7e4d69eBef1B7e1b3715f463619A254c",shapeNftAbi, signer)
 
   try{
     let receipt = await nft.safeMint(address)
@@ -129,6 +104,47 @@ app.get("/edu/nft/create/2/:address", async (req, res) => {
 
   await createGiftFromNatureAchievement(address,res)
 });
+
+app.get("/shape/nft/create/0/:address", async (req, res) => {
+  let address = req.params.address
+
+  if(!address){
+    res.json({
+      code: 501,
+      error: "Address is wrong"
+    })
+  }
+
+  await createShapeNeverForgetWaterAchievement(address,res)
+});
+
+app.get("/shape/nft/create/1/:address", async (req, res) => {
+  let address = req.params.address
+
+  if(!address){
+    res.json({
+      code: 501,
+      error: "Address is wrong"
+    })
+  }
+
+  await createShapeFirstHarvestAchievement(address,res)
+});
+
+app.get("/shape/nft/create/2/:address", async (req, res) => {
+  let address = req.params.address
+
+  if(!address){
+    res.json({
+      code: 501,
+      error: "Address is wrong"
+    })
+  }
+
+  await createShapeGiftFromNatureAchievement(address,res)
+});
+
+
 
 app.listen(3000, () => console.log("Server ready on port 3000."));
 

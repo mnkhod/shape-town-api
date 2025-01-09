@@ -2,26 +2,25 @@ const { ethers } = require("ethers")
 
 const { achievementNftAbi } = require("./constants.js")
 
-module.exports.createNeverForgetWaterAchievement = async (address,res) => {
+module.exports.createShapeNeverForgetWaterAchievement = async (address,res) => {
     await achievementMint(address,res,0)
 }
 
-module.exports.createFirstHarvestAchievement = async (address,res) => {
+module.exports.createShapeFirstHarvestAchievement = async (address,res) => {
     await achievementMint(address,res,1)
 }
 
-module.exports.createGiftFromNatureAchievement = async (address,res) => {
+module.exports.createShapeGiftFromNatureAchievement = async (address,res) => {
     await achievementMint(address,res,2)
 }
 
 async function eduAchievementContract(){
-  let provider = new ethers.JsonRpcProvider("https://rpc.open-campus-codex.gelato.digital")
-  let wallet = new ethers.Wallet(process.env.EDU_PRIVATE_KEY);
-//   let wallet = new ethers.Wallet("82579e77778ef15ca3c73a0ffd6095a5253d0c73f50c1a0867c6e32c53a47844");
+  let provider = new ethers.JsonRpcProvider("https://mainnet.shape.network")
+  let wallet = new ethers.Wallet(process.env.MAIN_SHAPE_PRIVATE_KEY);
 
   let signer = wallet.connect(provider);
 
-  let nft = new ethers.Contract("0x6bc9Da82cB85D6D9e34EF7b8B2F930a8A83F5FB2",achievementNftAbi, signer)
+  let nft = new ethers.Contract("0x23d6e7fe6dc435cdDC32e5aBBd3d6bE7f807bAbD",achievementNftAbi, signer)
 
   return nft;
 }
