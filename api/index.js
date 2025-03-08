@@ -23,6 +23,12 @@ const {
   createShapeNeverForgetWaterAchievement,
 } = require("./shapeEndpoints.js");
 
+const {
+  createCoreFirstHarvestAchievement,
+  createCoreGiftFromNatureAchievement,
+  createCoreNeverForgetWaterAchievement,
+} = require("./coreEndpoints.js");
+
 const app = express();
 app.use(cors());
 
@@ -74,6 +80,45 @@ app.get("/test/nft/create/:address", async (req, res) => {
       error: "Contract Error",
     });
   }
+});
+
+app.get("/core/nft/create/0/:address", async (req, res) => {
+  let address = req.params.address;
+
+  if (!address) {
+    res.json({
+      code: 501,
+      error: "Address is wrong",
+    });
+  }
+
+  await createCoreNeverForgetWaterAchievement(address, res);
+});
+
+app.get("/core/nft/create/1/:address", async (req, res) => {
+  let address = req.params.address;
+
+  if (!address) {
+    res.json({
+      code: 501,
+      error: "Address is wrong",
+    });
+  }
+
+  await createCoreFirstHarvestAchievement(address, res);
+});
+
+app.get("/core/nft/create/2/:address", async (req, res) => {
+  let address = req.params.address;
+
+  if (!address) {
+    res.json({
+      code: 501,
+      error: "Address is wrong",
+    });
+  }
+
+  await createCoreGiftFromNatureAchievement(address, res);
 });
 
 app.get("/world/nft/create/0/:address", async (req, res) => {
