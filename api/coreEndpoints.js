@@ -17,6 +17,14 @@ module.exports.createCoreGiftFromNatureAchievement = async (address, res) => {
   await achievementMint(address, res, 2);
 };
 
+module.exports.createCoreGoodInvitation = async (address, res) => {
+  await achievementMint(address, res, 5);
+};
+
+module.exports.createCoreMasterOfTheField = async (address, res) => {
+  await achievementMint(address, res, 6);
+};
+
 async function coreAchievementContract() {
   let provider = new ethers.JsonRpcProvider(
     "https://rpc.test.btcs.network"

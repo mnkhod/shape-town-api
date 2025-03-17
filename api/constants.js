@@ -26,6 +26,16 @@ module.exports.nftCollection = [
         "image": `${baseEndPoint}/${"TasteOfGoldAchievement"}.png`,
         "name": "Taste of Gold",
     },
+    {
+        "description": "Your first earned coins mark an important milestone in your journey. By completing honest work and trading with fellow villagers, you'll experience the satisfaction of earning your own money and learn the value of commerce in our community.",
+        "image": `${baseEndPoint}/${"GoodInvitation"}.png`,
+        "name": "Good Invitation",
+    },
+    {
+        "description": "Your first earned coins mark an important milestone in your journey. By completing honest work and trading with fellow villagers, you'll experience the satisfaction of earning your own money and learn the value of commerce in our community.",
+        "image": `${baseEndPoint}/${"MasterOfTheField"}.png`,
+        "name": "Master Of The Field",
+    },
 ];
 
 module.exports.achievementNftAbi = [
@@ -69,22 +79,22 @@ module.exports.achievementNftAbi = [
 ]
 
 module.exports.shapeNftAbi = [
-  "function approve(address,uint256)",
-  "function balanceOf(address) view returns (uint256)",
-  "function burn(uint256)",
-  "function getApproved(uint256) view returns (address)",
-  "function isApprovedForAll(address,address) view returns (bool)",
-  "function name() view returns (string)",
-  "function owner() view returns (address)",
-  "function ownerOf(uint256) view returns (address)",
-  "function renounceOwnership()",
-  "function safeMint(address)",
-  "function safeTransferFrom(address,address,uint256)",
-  "function safeTransferFrom(address,address,uint256,bytes)",
-  "function setApprovalForAll(address,bool)",
-  "function supportsInterface(bytes4) view returns (bool)",
-  "function symbol() view returns (string)",
-  "function tokenURI(uint256) view returns (string)",
-  "function transferFrom(address,address,uint256)",
-  "function transferOwnership(address)"
+    "function approve(address,uint256)",
+    "function balanceOf(address) view returns (uint256)",
+    "function burn(uint256)",
+    "function getApproved(uint256) view returns (address)",
+    "function isApprovedForAll(address,address) view returns (bool)",
+    "function name() view returns (string)",
+    "function owner() view returns (address)",
+    "function ownerOf(uint256) view returns (address)",
+    "function renounceOwnership()",
+    "function safeMint(address)",
+    "function safeTransferFrom(address,address,uint256)",
+    "function safeTransferFrom(address,address,uint256,bytes)",
+    "function setApprovalForAll(address,bool)",
+    "function supportsInterface(bytes4) view returns (bool)",
+    "function symbol() view returns (string)",
+    "function tokenURI(uint256) view returns (string)",
+    "function transferFrom(address,address,uint256)",
+    "function transferOwnership(address)"
 ]

@@ -27,6 +27,8 @@ const {
   createCoreFirstHarvestAchievement,
   createCoreGiftFromNatureAchievement,
   createCoreNeverForgetWaterAchievement,
+  createCoreGoodInvitation,
+  createCoreMasterOfTheField,
 } = require("./coreEndpoints.js");
 
 const app = express();
@@ -119,6 +121,32 @@ app.get("/core/nft/create/2/:address", async (req, res) => {
   }
 
   await createCoreGiftFromNatureAchievement(address, res);
+});
+
+app.get("/core/nft/create/5/:address", async (req, res) => {
+  let address = req.params.address;
+
+  if (!address) {
+    res.json({
+      code: 501,
+      error: "Address is wrong",
+    });
+  }
+
+  await createCoreGoodInvitation(address, res);
+});
+
+app.get("/core/nft/create/6/:address", async (req, res) => {
+  let address = req.params.address;
+
+  if (!address) {
+    res.json({
+      code: 501,
+      error: "Address is wrong",
+    });
+  }
+
+  await createCoreMasterOfTheField(address, res);
 });
 
 app.get("/world/nft/create/0/:address", async (req, res) => {
