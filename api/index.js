@@ -29,6 +29,7 @@ const {
   createCoreNeverForgetWaterAchievement,
   createCoreGoodInvitation,
   createCoreMasterOfTheField,
+  createCoreTasteOfGold,
 } = require("./coreEndpoints.js");
 
 const app = express();
@@ -121,6 +122,19 @@ app.get("/core/nft/create/2/:address", async (req, res) => {
   }
 
   await createCoreGiftFromNatureAchievement(address, res);
+});
+
+app.get("/core/nft/create/4/:address", async (req, res) => {
+  let address = req.params.address;
+
+  if (!address) {
+    res.json({
+      code: 501,
+      error: "Address is wrong",
+    });
+  }
+
+  await createCoreTasteOfGold(address, res);
 });
 
 app.get("/core/nft/create/5/:address", async (req, res) => {

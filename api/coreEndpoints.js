@@ -17,6 +17,10 @@ module.exports.createCoreGiftFromNatureAchievement = async (address, res) => {
   await achievementMint(address, res, 2);
 };
 
+module.exports.createCoreTasteOfGold = async (address, res) => {
+  await achievementMint(address, res, 4);
+};
+
 module.exports.createCoreGoodInvitation = async (address, res) => {
   await achievementMint(address, res, 5);
 };
